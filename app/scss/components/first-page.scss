@@ -25,7 +25,7 @@
             width: 100%;
             background-color: rgb(24, 20, 20);
             color: #ffff;
-            padding: 13px;
+            padding: 17px;
             font-size: 1.4rem;
             border: none;
             outline:  none;
@@ -40,8 +40,8 @@
 
         i {
             position: absolute;
-            right: 10px;
-            top: 8px;
+            right: 14px;
+            top: 14px;
             font-size: 1.6rem;
             cursor: pointer;
             color: var(--primary-color);
@@ -73,6 +73,7 @@
 
         input[type="range"]{
             position: relative;
+            cursor: pointer;
             -webkit-appearance: none;
             margin: 10px auto;
             -moz-appearance: none;
@@ -228,6 +229,7 @@
             .indicator {
                 display: flex;
                 align-items: center;
+                position: relative;
 
                 p {
                     font-size: 1.2rem;

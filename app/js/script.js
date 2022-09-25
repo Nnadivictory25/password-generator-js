@@ -167,11 +167,7 @@ let generatePassword = () => {
             `
         } else {
             indicator.innerHTML += `
-            <p class="text">medium</p>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+            <img style="position: absolute; width:40px; right:20px;" src="/images/Rolling-1s-200px.svg" alt="">
             `
         }
     }
