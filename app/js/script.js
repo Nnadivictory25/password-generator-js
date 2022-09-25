@@ -11,6 +11,7 @@ const numberInput = document.querySelector('.number')
 const symbolInput = document.querySelector('.symbol')
 const indicator = document.querySelector('.indicator')
 
+
 const eg = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
 'M', 'N', 'O', 'P', 'Q', 'R',  'S', 'T', 'U', 'V', 'W', 'X',
     'Y', 'Z']

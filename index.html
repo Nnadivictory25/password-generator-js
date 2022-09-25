@@ -20,6 +20,8 @@
      <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
      <!-- toastify link -->
      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+     <!-- animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
 </head>
 <body>
@@ -27,11 +29,11 @@
 
         <!-- container to align every item in the middle ✌ -->
         <div class="container">
-            <h4 class="header">Password Generator</h4>
+            <h4 class="animate__animated animate__bounceInLeft header">Password Generator</h4>
             <!-- generated password goes here  -->
-            <div class="generated_pass_input--ctn">
+            <div  class="animate__animated animate__flipInX animate__delay-0.5s generated_pass_input--ctn">
                 <input  type="text" name="generated-password" id="generated-password-area">
-                <i  id="clipboard" class="bi bi-clipboard"></i>
+                <i  id="clipboard" class="animate__animated animate__flip  animate__delay-5s bi bi-clipboard"></i>
             </div>
 
             <!-- second container of all generator tools: checkboxes,range .... -->
@@ -39,29 +41,29 @@
                 <div class="generator_tools_ctn--header">
                     <p class="generator_tools_ctn--header_text">character length</p>
                     <!-- length of generated password is displayed below -->
-                    <span id="output_value" class="generator_tools_ctn--header_number">10</span>
+                    <span id="output_value" class="animate__animated animate__bounceIn  animate__delay-3s      generator_tools_ctn--header_number">10</span>
                 </div>
                     <!-- range input goes below -->
                     <input type="range" min="0" max="20" value="10" oninput="slider()" name="character_length_input" id="range_input">
 
                      <!-- container for the checkboxes -->
                      <div class="generator_tools_ctn--checkbox_ctn">
-                        <label class="custom_checkbox_ctn" >include uppercase letters
+                        <label class="animate__animated animate__flash  animate__delay-4s custom_checkbox_ctn" >include uppercase letters
                             <input id="uppercase" class="uppercase"  type="checkbox">
                             <span class="custom_checkbox"></span>
                         </label>
                           
-                        <label class="custom_checkbox_ctn">include lowercase letters
+                        <label class="animate__animated animate__flash  animate__delay-4s custom_checkbox_ctn">include lowercase letters
                             <input id="lowercase" class="lowercase" type="checkbox" >
                             <span class="custom_checkbox"></span>
                         </label>
                           
-                        <label class="custom_checkbox_ctn">include numbers
+                        <label class="animate__animated animate__flash  animate__delay-4s custom_checkbox_ctn">include numbers
                             <input id="number" class="number" type="checkbox" >
                             <span class="custom_checkbox"></span>
                         </label>
                           
-                        <label class="custom_checkbox_ctn">include symbols
+                        <label class="animate__animated animate__flash  animate__delay-4s custom_checkbox_ctn">include symbols
                             <input id="symbol" class="symbol" type="checkbox">
                             <span class="custom_checkbox"></span>
                         </label>
@@ -81,7 +83,7 @@
                     </div>
 
                     <!-- generate button below -->
-                    <button onclick="generatePassword()" class="generate_button">
+                    <button onclick="generatePassword()" class="animate__swing animate__animated animate__delay-2s generate_button">
                         GENERATE <i class="bi bi-arrow-right-short"></i>
                     </button>
             </div>
