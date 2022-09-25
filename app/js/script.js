@@ -165,6 +165,14 @@ let generatePassword = () => {
             <span style="background-color: #38b000;"></span>
             <span style="background-color: #38b000;"></span>
             `
+        } else {
+            indicator.innerHTML += `
+            <p class="text">medium</p>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            `
         }
     }
     
