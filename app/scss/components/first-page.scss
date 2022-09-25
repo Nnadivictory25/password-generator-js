@@ -23,6 +23,8 @@
 
         input {
             width: 100%;
+            cursor: none;
+            pointer-events: none;
             background-color: rgb(24, 20, 20);
             color: #ffff;
             padding: 17px;
