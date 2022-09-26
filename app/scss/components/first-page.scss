@@ -51,6 +51,7 @@
 
             &:hover {
                 opacity: .7;
+                color: var(--white);
             }
         }
     }
@@ -112,6 +113,11 @@
             margin-top: -6px;
             border: none;
             transition: all 200ms ease-in-out;
+
+            &:hover {
+                background-color: var(--black);
+                outline: 1px solid var(--primary-color);
+            }
         }
         input[type="range"]::-moz-range-thumb{
             -webkit-appearance: none;
@@ -123,6 +129,11 @@
             margin-top: -6px;
             border: none;
             transition: all 700ms ease-in-out;
+
+            &:hover {
+                background-color: var(--black);
+                outline: 1px solid var(--primary-color);
+            }
         }
         input[type="range"]::-ms-thumb{
             appearance: none;
@@ -133,10 +144,20 @@
             cursor: pointer;
             margin-top: -6px;
             border: none;
+
+            &:hover {
+                background-color: var(--black);
+                outline: 1px solid var(--primary-color);
+            }
         }
         input[type="range"]:active::-webkit-slider-thumb{
-            background-color: #ffffff;
-            border: 1px solid var(--primary-color);
+            background-color: #fff;
+            outline: 1px solid var(--primary-color);
+
+            &:hover {
+                background-color: var(--black);
+                outline: 1px solid var(--primary-color);
+            }
         }
 
         &--checkbox_ctn {
@@ -177,6 +198,11 @@
                     background-color: transparent;
                     border: 1px solid #fff;
                     transition: all 150ms ease-in;
+
+                    &:hover {
+                        outline: 1px solid var(--primary-color);
+                        transition: all 200ms ease-in;
+                    }
                 }
 
                 input:checked ~ .custom_checkbox {
@@ -267,6 +293,9 @@
             background-color: var(--primary-color);
 
             &:hover {
+                outline: 1px solid var(--primary-color);
+                background-color: var(--black);
+                color: var(--primary-color);
                 opacity: .7;
             }
             

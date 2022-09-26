@@ -20,6 +20,9 @@ const uppercaseArray = eg.join('').toUpperCase().split(' ')
 const symbolsArray = ['~`|!@#$%^&*()_-+=.,']
 const numbersArray = ['0123456789']
 
+
+// THIS DIDN'T WORK 😂
+
 // let iteration = lowerCaseArray.length + upperCaseArrayMain.length + symbolsArray.length + nubersArray.length;
 // console.log(iteration);
 
@@ -41,50 +44,54 @@ const numbersArray = ['0123456789']
 
 
 
-
+// calling the generate pasword function
 let generatePassword = () => {
-    pwDisplay.value = ''
+    pwDisplay.value = '' // setting the value of the input to be empty just incase if the user has already one before , so to ensure the new genearted value doesn't get combined with the old one
 
-    const uppercaseChecked = uppercaseInput.checked 
-    const lowercaseChecked = lowercaseInput.checked
-    const symbolsChecked = symbolInput.checked
-    const numberChecked = numberInput.checked
+    const uppercaseChecked = uppercaseInput.checked // if/when uppercase checkbox is checked
+    const lowercaseChecked = lowercaseInput.checked // if/when lowercase checkbox is checked
+    const symbolsChecked = symbolInput.checked // if/when symbols checkbox is checked
+    const numberChecked = numberInput.checked // if/when numbers checkbox is checked
 
 
-    let passwordLength = mySlider.value;
+    let passwordLength = mySlider.value; // getting how many password to be generated from the slider input value
     let randomNumber = (arr) => {
-        return Math.floor(Math.random() * arr.length);
+        return Math.floor(Math.random() * arr.length); // function to get a random number in regards to the arr length passed into it
     }
-    let selectedOptionsArray = [];
-    let possibleCombo = '';
+    let selectedOptionsArray = []; // empty array to get arrays of selected possible combinations
+    let possibleCombo = ''; //empty string to get and combine each array inside the array above
     
 
-    let generatedPass = [];
-    console.log(passwordLength);
+    let generatedPass = []; // this is where the generated password is pushed into and later converted into a string
+    // console.log(passwordLength);
     let numberOfCheckedInputs = document.querySelectorAll('input[type="checkbox"]:checked').length ? undefined : 0;
-    // let checkedInputs = document.querySelectorAll('input[type="checkbox"]:checked')
 
 
 
     if (passwordLength >= 4 && numberOfCheckedInputs !== 0) {
 
+        // generate only works if there is minumum of 4 character length selected and at least one checkbox checked
+
+        // pushing the selected option array into the selectedOptionsArray
         if (uppercaseChecked) selectedOptionsArray.push(uppercaseArray)
         if (lowercaseChecked) selectedOptionsArray.push(lowercaseArray)
         if (symbolsChecked) selectedOptionsArray.push(symbolsArray)
         if (numberChecked) selectedOptionsArray.push(numbersArray)
 
+
         for (let x = 0; x < selectedOptionsArray.length; x++) {
-           
+           // I am looping through the selctedOptionsArray here to single out each array in it to further convert to a string in the possibleCombo variable
             possibleCombo += selectedOptionsArray[x]
         
         }
 
-        generatedPass.push(possibleCombo)
-        generatedPass = generatedPass.join('')
+        generatedPass.push(possibleCombo) // an array with all the possible combinations
+        generatedPass = generatedPass.join('') // converted to a string 
 
         for (let i = 0; i < passwordLength; i++) {
             pwDisplay.value += generatedPass[randomNumber(generatedPass)]
     
+            // looping through the generatedPass string and getting a random value and adding it to the password display element
         }
 
 
@@ -95,6 +102,8 @@ let generatePassword = () => {
         // console.log(possibleCombo);
         // console.log(generatedPass);
         // console.log(selectedOptionsArray);
+
+
     } else if (passwordLength < 4) {
         // alert('minimum of 4 characters to be generated !!')
         Toastify({
@@ -128,6 +137,7 @@ let generatePassword = () => {
 
 
 
+    // wanted to guarantee each option selected will be generated, couldn't , well at least for now 😉
     // let crossCheck = (selectedCombination, array) => {
     //     let sampleArray = [];
     //     sampleArray = pwDisplay.value.split('')
@@ -140,6 +150,7 @@ let generatePassword = () => {
     // }
 
     
+    // displaying the strength of the generated password 
     let displayStrength = () => {
         indicator.innerHTML = ''
         if (passwordLength <= 7 && pwDisplay.value !== '') {
@@ -167,6 +178,7 @@ let generatePassword = () => {
             <span style="background-color: #38b000;"></span>
             `
         } else {
+            // adding a loading svg if nothing is generated when generate button is clicked
             indicator.innerHTML += `
             <img style="position: absolute; width:40px; right:20px;" src="/images/Rolling-1s-200px.svg" alt="">
             `
@@ -179,9 +191,12 @@ let generatePassword = () => {
     // crossCheck(lowercaseChecked, lowercaseArray);
     // crossCheck(symbolsChecked, symbolsArray);
     // crossCheck(numberChecked, numbersArray);
+
+
     displayStrength();
 }
 
+// copy to clipboard function
 clipBoard.addEventListener('click', () => {
     let text = pwDisplay.value;
 
@@ -224,7 +239,7 @@ clipBoard.addEventListener('click', () => {
 
 
 
-
+// the slider display function , css is weird , didn't know styling a range input requires js. Thanks to anyone I copied there code
 function slider() {
     valPercent = (mySlider.value / mySlider.max)*100;
     mySlider.style.background = `linear-gradient(to right, #A4FFAF ${valPercent}%, #000 ${valPercent}%)`;
