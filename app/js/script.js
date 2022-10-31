@@ -146,6 +146,7 @@ let generatePassword = () => {
       passQuery = false // if so, my passQuery should be false
     } else passQuery = true // but if accurately generated , passQuery is true
 
+    console.log(passQuery);
       
       
   } else if (passwordLength < 4) {
