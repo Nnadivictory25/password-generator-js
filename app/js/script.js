@@ -41,10 +41,13 @@ const eg = [
 ];
 const lowercaseArray = eg.join("").toLowerCase().split(" ");
 const uppercaseArray = eg.join("").toUpperCase().split(" ");
-const symbolsArray = ["~`|!@#$%^&*()_-+=.,"];
+const symbolsArray = ["~!@#$%&*()_-+=."];
 const numbersArray = ["0123456789"];
+let passQuery = true // passQuery makes sure the generated password is accurate in regards to what the user selected
 
-// calling the generate pasword function
+
+
+// creating the generate pasword function
 let generatePassword = () => {
   pwDisplay.value = ""; // setting the value of the input to be empty just incase if the user has already one before , so to ensure the new genearted value doesn't get combined with the old one
 
@@ -62,11 +65,7 @@ let generatePassword = () => {
 
   let generatedPass = []; // this is where the generated password is pushed into and later converted into a string
   // console.log(passwordLength);
-  let numberOfCheckedInputs = document.querySelectorAll(
-    'input[type="checkbox"]:checked'
-  ).length
-    ? undefined
-    : 0;
+  let numberOfCheckedInputs = document.querySelectorAll('input[type="checkbox"]:checked').length ? undefined : 0;
 
   if (passwordLength >= 4 && numberOfCheckedInputs !== 0) {
     // generate only works if there is minumum of 4 character length selected and at least one checkbox checked
@@ -86,7 +85,7 @@ let generatePassword = () => {
     generatedPass = possibleCombo.split(""); // an array with all the possible combinations
     let string = "";
 
-    let generateString = () => {
+    let generateString = () => { // string to be displayed after successful generation and combination
       for (let i = 0; i < passwordLength; i++) {
         string += generatedPass[randomNumber(generatedPass)];
         pwDisplay.value = string;
@@ -96,23 +95,23 @@ let generatePassword = () => {
     };
     generateString();
 
+    // made each of the combinations into a proper array . ie : from ['ABCD'] => ['A','B','C','D'] so I can loop through them
     let upArr = uppercaseArray.join('').split('');
     let lowArr = lowercaseArray.join('').split('');
     let symbArr = symbolsArray.join('').split('');
     let numArr = numbersArray.join('').split('');
     let strArr = string.split('')
-    let pasQuery = false
 
     
-    let digitChecker = []
+    let digitChecker = [] // created an accuracy verifier array
 
     if (uppercaseChecked) {
-      let upperTestArr = []
+      let upperTestArr = [] // looping through upperCaseArray while checking if the generated string has any element thats in it and pushing it here
       for (let i = 0; i < upArr.length; i++) {
-        upperTestArr.push(strArr.find(ele => upArr[i] === ele))
+        upperTestArr.push(strArr.find(ele => upArr[i] === ele)) //  undefined will be pushed for any test that is false
       }
-      upperTestArr = upperTestArr.filter(items => items !== undefined);
-      digitChecker.push(upperTestArr.length)
+      upperTestArr = upperTestArr.filter(items => items !== undefined); //after finding it, filter out the undefined 
+      digitChecker.push(upperTestArr.length) // push the filtered array's length into the checker (if it's 0 , then the string is inaccurate)
     }
 
     if (lowercaseChecked) {
@@ -142,15 +141,10 @@ let generatePassword = () => {
       digitChecker.push(numTestArr.length);
     }
 
+    // below I'm checking if the checker array has 0 as a value in it as this indicates that a particular selected option is not in the generated password string
     if (digitChecker.includes(0)) {
-      pasQuery = false
-    } else pasQuery = true
-
-
-
-    console.log(string);
-    console.log(digitChecker);
-    console.log(pasQuery)
+      passQuery = false // if so, my passQuery should be false
+    } else passQuery = true // but if accurately generated , passQuery is true
 
       
       
@@ -225,6 +219,24 @@ let generatePassword = () => {
 
   displayStrength();
 };
+
+// adding event listener to the generate button
+btn.addEventListener('click', () => {
+  generatePassword()
+  let t = 0 // to track how many times it took this script to generate an accurate password
+  // - below I wrote a script to make sure the generated password is accurate in regards to user's input
+  // - so when password is generated (remember my passQuery variable?) and passQuery is false , keep running the generatePassword() function until it's true
+  while (!passQuery) { 
+    generatePassword()
+    t++
+  }
+  if (pwDisplay.value.length !== 0) {
+    console.log(`accurately generated after ${t} trials 😎`); // How many times it took to get the accurate password generated
+  }
+});
+
+
+
 
 // copy to clipboard function
 clipBoard.addEventListener("click", () => {
