@@ -231,8 +231,19 @@ btn.addEventListener('click', () => {
     generatePassword()
     t++
   }
-  if (pwDisplay.value.length !== 0) {
-    console.log(`accurately generated after ${t} trials 😎`); // How many times it took to get the accurate password generated
+  if (pwDisplay.value.length !== 0 && t !== 0) {
+    Toastify({
+      text: `accurately generated after ${t} trials 😎`,
+      gravity: "bottom",
+      duration: 1500,
+      position: "right",
+      close: true,
+      style: {
+        background: "linear-gradient(to right, #A4FFAF, #A4FFAa)",
+        color: "#000",
+        fontWeight: 700,
+      },
+    }).showToast(); // How many times it took to get the accurate password generated
   }
 });
 
